@@ -4,7 +4,7 @@ import {Content} from './Pages/Content'
 import {ListNft} from './components/ListNft'
 import {Tasks} from "./components/Tasks"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+import { RegisterLand } from './register';
 
 
 
@@ -12,14 +12,15 @@ const App = () => {
 
   return (
     <div className="section_container">
-      <Router>
+    <RegisterLand />
+      {/* <Router>
         <Routes>
           <Route path="/" element={<Tasks />} exact />
           <Route path="/tasks" element={<Tasks />} />
           <Route path="/nftlisting" element={<ListNft />} />
            <Route path="/mint" element={<Content />} />
         </Routes>
-      </Router>
+      </Router> */}
     </div>
   );
 };
