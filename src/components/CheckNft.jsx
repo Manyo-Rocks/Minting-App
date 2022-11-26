@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const RetrieveNft = ({ bunzz, userAddress }) => {
+export const CheckNft = ({ bunzz, userAddress }) => {
   const [tokenId, setTokenId] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -26,23 +26,8 @@ export const RetrieveNft = ({ bunzz, userAddress }) => {
   };
 
   return (
-    <div className="wrapper">
-      <p className="title">Step2: view your minted NFT</p>
-      <input
-        placeholder="token ID"
-        value={tokenId}
-        onChange={(e) => setTokenId(e.target.value)}
-        type="text"
-        className="forminput"
-      />
-      {onGoing ? (
-        <div className="waitMessage">Loading...</div>
-      ) : (
-        <button onClick={submit}>get</button>
-      )}
-      {name ? <p>Name: {name}</p> : <></>}
-      {description ? <p>Description: {description}</p> : <></>}
-      {image ? <img src={image} alt="image" className="image" /> : <></>}
-    </div>
+			<div className="wrapper">
+				</div>
+   
   );
 };

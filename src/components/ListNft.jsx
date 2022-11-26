@@ -26,6 +26,7 @@ export const ListNft = ({ bunzz, userAddress }) => {
   const [type, setType] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [successmsg, setSuccessMsg] = useState ("")
 
   const select = (e) => {
     const file = e.target.files[0];
@@ -60,6 +61,7 @@ export const ListNft = ({ bunzz, userAddress }) => {
   const submit = async () => {
     setOnGoing(true);
     try {
+     
       const metadata = await store(name, description, blob, fileName, type);
       const contract = await bunzz.getContract("NFT (IPFS Mintable)");
       const inputUrl = metadata.url.replace(/^ipfs:\/\//, "");
@@ -72,7 +74,7 @@ export const ListNft = ({ bunzz, userAddress }) => {
       const _tokenId = event.args[2];
       setTokenId(_tokenId);
       setBase64(null);
-      window.alert("Minting successful");
+      setSuccessMsg("Your Submission has been minted Successfully. You can now click on the Go back button above");
     } catch (err) {
       console.error(err);
     } finally {
@@ -83,25 +85,25 @@ export const ListNft = ({ bunzz, userAddress }) => {
   return (
     <div className="wrapper">
       <button className='back-button'><Link to={"/"}>Go back</Link></button>
-      <p className="title">
-         Mint your solution as NFT
-      </p>
+     
       <input
-        placeholder="Token Name"
+        placeholder="Enter your Solution Url"
         value={name}
         onChange={(e) => setName(e.target.value)}
         type="text"
         className="input"
       />
       <input
-        placeholder="Description"
+        placeholder="Write a summary of your solution"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         type="text"
         className="input"
 
       />
-      <input type="file" accept="image/*" onChange={select} />
+      <label class="file-Upload">
+      <input type="file" accept="image/*" onChange={select} />Click To Upload Screenshot
+      </label>
       {base64 ? (
           <img src={base64} alt="hoge" className="image" />
       ) : (
@@ -109,14 +111,21 @@ export const ListNft = ({ bunzz, userAddress }) => {
       )}
       {onGoing ? (
         <div className="minting">
-          minting..
+          Minting is in progress
         </div>
       ) : (
         <button className="mintButton" onClick={submit}>
-          mint
+          Mint your solution screenshot as NFT
         </button>
       )}
-      {tokenId ? <h2>token ID: {tokenId}</h2> : <></>}
+       <input
+        placeholder="Check to see if your transaction is successful"
+        value={successmsg}
+        type="text"
+        className="input"
+
+      />
+       {tokenId ? <p>token ID: {tokenId}</p> : <></>}
     </div>
   );
 };
