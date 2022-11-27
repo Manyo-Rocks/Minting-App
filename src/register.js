@@ -44,7 +44,13 @@ const RegisterLand =()=>{
             
     //   }
     }
-    
+    function mess(){
+        return(
+         <VerifyStatus trigger={verifiedStatus}>
+                    <h1>Verified successfully!</h1>
+                </VerifyStatus>
+        )
+    }
 
     return (<div>
          <form method='#'>
@@ -100,20 +106,17 @@ const RegisterLand =()=>{
              {/* <button  onClick={handleOnClick}>Register Land</button>
              */}
                   {onGoing ? (
+                    
         <div className="minting">
           verifying... please wait
         </div>
+        
       ) : (
                 <button  onClick={handleOnClick}>Register Land</button>
 
                      )
                 }
-                {setTimeout (()=>{
-                 <VerifyStatus trigger={verifiedStatus}>
-                    <h1>Verified successfully!</h1>
-                </VerifyStatus>
-                }, 10000)};
-               
+            
             </form>
     </div>);
 
